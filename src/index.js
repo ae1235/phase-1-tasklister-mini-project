@@ -1,24 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let form = document.getElementById('create-task-form')
-  form.addEventListener('submit', function(e){
-    e.preventDefault()
-    
-    p = document.createElement('p');
-    p.textContent = `${e.target['new-task-description'].value} `
-    button = document.createElement('button')
-    button.textContent = 'X'
-    form.appendChild(p)
-    p.appendChild(button)
-
-    
-    button.addEventListener('click', function(e){
-      e.target.parentNode.remove()
-    })
-   
-  })
-  
-  
-  
-
+  const newTaskForm = document.getElementById("create-task-form");
+  const newTaskDescription = document.getElementById("new-task-description");
+  const newTaskPriority = document.getElementById("new-task-priority");
+  const newTaskUl = document.getElementById("tasks");
+  newTaskForm.addEventListener("submit", createNewTask);
 });
+const createNewTask = event => {
+  event.preventDefault();
+  const newTaskDescription = document.getElementById("new-task-description");
+  const newTask = document.createElement("li");
+  newTask.innerText = newTaskDescription.value;
+  appendNewTask(newTask);
+  event.target.reset();
+};
+const appendNewTask = task => {
+  document.getElementById("tasks").appendChild(task);
+};
+
+
+
+
+
+
+
+
+
 
